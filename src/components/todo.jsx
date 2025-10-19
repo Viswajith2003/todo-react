@@ -16,8 +16,10 @@ function Todo() {
   const addItems = () => {
     if (text !== "") {
       setTodos([...todos, { list: text, id: Date.now(), status: false }]);
+      console.log(todos);
       setText("");
-    } else if (editId) {
+    }
+    if (editId) {
       const editTodo = todos.find((todo) => todo.id === editId);
       const updateTodo = todos.map((to) =>
         to.id === editTodo.id ? { ...to, list: text } : to
@@ -65,7 +67,6 @@ function Todo() {
       } flex items-center justify-center p-4`}
     >
       <div className="relative w-full max-w-md">
-        
         <button
           onClick={toggleTheme}
           className={`absolute -top-16 right-0 p-3 rounded-full transition-all duration-300 ${
@@ -140,6 +141,7 @@ function Todo() {
                       <FiEdit
                         onClick={() => onEdit(item.id)}
                         className="text-blue-400 cursor-pointer hover:text-blue-300 transition-colors"
+                        id="edit"
                         title="Edit"
                       />
                       <MdDelete
