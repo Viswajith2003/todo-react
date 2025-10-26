@@ -14,6 +14,7 @@ function Todo() {
   const inputRef = useRef();
 
   const addItems = () => {
+    if (text === "") return null;
     if (text !== "") {
       setTodos([...todos, { list: text, id: Date.now(), status: false }]);
       console.log(todos);
@@ -39,7 +40,10 @@ function Todo() {
   }, [editId]);
 
   const onDelete = (id) => {
-    setTodos(todos.filter((item) => item.id !== id));
+    const handleDelet = window.confirm("Are you sure you want to delete this?");
+    if (handleDelet) {
+      setTodos(todos.filter((item) => item.id !== id));
+    }
   };
 
   const onEdit = (id) => {
